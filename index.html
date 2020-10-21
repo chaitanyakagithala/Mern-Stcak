@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <script src="./public/scripts/index.js"></script>
+   <link rel="stylesheet" href="./public/styles/style.css">
+   
+</head>
+<body>
+    <div id="root">
+        <div id="inputdiv" class="header">
+            <h2> To Do List</h2>
+            <input type="text" id="myinput" placeholder="add something to do">
+            <span onclick="newelement()" >Add</span>
+          </div>
+          
+          <ul id = "list_of_things_to_do">
+            <li onload="remove()">play cricket</li>
+          </ul>
+    </div>
+
+</body>
+</html>
