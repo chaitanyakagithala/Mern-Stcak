@@ -8,16 +8,19 @@ function newelement(){
         alert("write something")
     }
     else{
-        document.getElementById("list_of_things_to_do").appendChild(li);    
+        document.getElementById("list_of_things_to_do").appendChild(li);   
     }
-}
-function remove(){
-var todolist = document.getElementsByTagName("li")
- for( var i=0;i<todolist.length;i++){
-     var block = document.createElement("span")
-     var closesymbol = document.createTextNode("close");
-     block.appendChild(closesymbol);
-     todolist[i].appendChild(block);
-     console.log(i);
- }
+    document.getElementById("myinput").value = "";
+    var span = document.createElement("span")
+    var close = document.createTextNode("\u2715");
+    span.className = "close";
+    span.appendChild(close);
+    span.setAttribute('onClick','alert("closing...")');
+    li.appendChild(span);
+    const Http = new XMLHttpRequest();
+    const url='/contact';
+    Http.open("POST", url);
+    Http.setRequestHeader('Content-Type','application/json');
+    Http.send(JSON.stringify({body:{work:inputvalue}}));
+
 }
