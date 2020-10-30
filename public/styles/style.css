@@ -1,7 +1,22 @@
 #root{ 
-    background-color: aliceblue;
-    
+  background-color: #bccfdf;
+  padding: 11px 45px 3px 12px;
+  width: 30%;
+  margin-left: 30%;
 }
 .close{
   padding:10px 10px 10px 10px;
+}
+.close:hover{
+  background-color: transparent;
+  border-radius: 50%;
+  width: 52px;
+  height: 56px;
+}
+.tasks{
+  display: contents;
+}
+#list_of_things_to_do{
+ list-style: none;
+ display: contents;
 }
