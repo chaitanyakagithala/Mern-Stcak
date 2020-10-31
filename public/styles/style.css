@@ -6,17 +6,28 @@
 }
 .close{
   padding:10px 10px 10px 10px;
+  margin-left: 10px;
 }
-.close:hover{
-  background-color: transparent;
-  border-radius: 50%;
-  width: 52px;
-  height: 56px;
+.close:hover {
+  background-color: #f44336;
+  color: white;
 }
+
 .tasks{
   display: contents;
 }
 #list_of_things_to_do{
  list-style: none;
  display: contents;
+}
+.listitem{
+  padding: 10px 10px 10px 5px;
+  
+}
+.button{
+  padding: 0px;
+  margin-left: 10px;
+}.button:hover {
+  background-color: transparent;
+  color: white;
 }
