@@ -10,7 +10,7 @@
 }
 .close:hover {
   background-color: #f44336;
-  color: white;
+    
 }
 
 .tasks{
@@ -29,5 +29,5 @@
   margin-left: 10px;
 }.button:hover {
   background-color: transparent;
-  color: white;
+  
 }

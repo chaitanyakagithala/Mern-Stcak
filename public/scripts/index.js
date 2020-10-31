@@ -118,7 +118,51 @@ function fetchAllTasks() {
   };
 }
 
+function update(event) {
+  const li = event.currentTarget.parentElement;
+  inputTag = li.firstChild;
+  li.removeChild(li.firstChild); //removing input element
+  updateButton = li.firstChild;
+  li.removeChild(li.firstChild); //removing update button
+  var label = document.createElement("label");
+  var checkbox = document.createElement("input");
+  const button = document.createElement("button");
 
+  const errdata = updateButton.getAttribute('previousData');
+
+  var textnode = document.createTextNode(inputTag.value);
+  var span = document.createElement("span");
+  var close = document.createTextNode("\u2715");
+
+  button.innerText = "edit";
+  button.className = "button";
+  button.onclick = editTask;
+
+  checkbox.type = "checkbox";
+  checkbox.checked = updateButton.getAttribute('checked');
+
+  label.className = "tasks";
+  label.appendChild(checkbox);
+  label.appendChild(textnode);
+
+  span.className = "close";
+  span.appendChild(close);
+
+  li.className = "listitem";
+  li.appendChild(label);
+  li.appendChild(button);
+  li.appendChild(span);
+
+  const Http = new XMLHttpRequest();
+  const url = "/edittask";
+  Http.open("POST", url);
+  Http.setRequestHeader("Content-Type", "application/json");
+  Http.send(
+    JSON.stringify({
+      body: { previous_work: errdata, edited_work: inputTag.value},
+    })
+  );
+}
 function editTask(event) {
   const ul = event.currentTarget.parentElement.parentElement;
   const li = event.currentTarget.parentElement;
@@ -128,63 +172,27 @@ function editTask(event) {
   const state = checkbox.checked;
   const editdata = document.createElement("input");
   const updatebutton = document.createElement("button");
-  
+
   editdata.type = "text";
   updatebutton.innerText = "update";
   editdata.value = errdata;
-  
-  
+  updatebutton.setAttribute("previousData", errdata);
+  updatebutton.setAttribute("checked", state);
+
   li.appendChild(editdata);
   li.appendChild(updatebutton);
 
   li.removeChild(li.firstChild);
   li.removeChild(li.firstChild);
   li.removeChild(li.firstChild);
-  console.log(checkbox.checked)
 
-
-
-  function update() {
-    li.removeChild(li.firstChild); //removing input element
-    li.removeChild(li.firstChild); //removing update button
-    var label = document.createElement("label");
-    var checkbox = document.createElement("input");
-    const button = document.createElement("button");
-  
-    var textnode = document.createTextNode(editdata.value);
-    var span = document.createElement("span");
-    var close = document.createTextNode("\u2715");
-  
-    button.innerText = "edit";
-    button.className = "button";
-    button.onclick = editTask;
-  
-    checkbox.type = "checkbox";
-    checkbox.checked = state;
-    
-  
-    label.className = "tasks";
-    label.appendChild(checkbox);
-    label.appendChild(textnode);
-  
-    span.className = "close";
-    span.appendChild(close);
-  
-
-    li.className = "listitem";
-    li.appendChild(label);
-    li.appendChild(button);
-    li.appendChild(span);
-
-    const Http = new XMLHttpRequest();
-    const url = "/edittask";
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.send(JSON.stringify({ body: { previous_work:errdata , edited_work: editdata.value } }));
-   }
-   
-  updatebutton.onclick = update;
  
+
+  console.log(checkbox.checked);
+
+  updatebutton.onclick = update;
+  updatebutton.setAttribute("editeddata",editdata.value)
+
 }
 
 fetchAllTasks();
